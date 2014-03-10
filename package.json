@@ -1,0 +1,32 @@
+{
+  "name": "png-crop",
+  "version": "0.0.0",
+  "description": "Small PNG cropping utility, written in pure JS for Node.",
+  "main": "index.js",
+  "dependencies": {
+    "pngjs": "~0.4.0",
+    "streamifier": "^0.1.0"
+  },
+  "devDependencies": {
+    "concat-stream": "^1.4.3",
+    "mocha": "^1.17.1",
+    "should": "^3.1.3"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenglou/png-crop"
+  },
+  "keywords": [
+    "png",
+    "crop",
+    "image"
+  ],
+  "author": "chenglou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chenglou/png-crop/issues"
+  }
+}
