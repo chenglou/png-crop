@@ -28,21 +28,17 @@ function _turnPathOrStreamOrBufIntoStream(streamOrBufOrPath, done) {
 }
 
 function cropToStream(streamOrBufOrPath, config, done) {
-  var noDimsMsg = 'Image cropping dimensions should specify width and height';
-
-  if (!config) return done(new Error(noDimsMsg));
-  if (config.height == null || config.width == null) {
-    return done(new Error(noDimsMsg));
-  }
+  var noDimsMsg = 'Image cropping dimensions missing';
+  if (typeof config !== 'object') return done(new Error(noDimsMsg));
 
   _turnPathOrStreamOrBufIntoStream(streamOrBufOrPath, function(err, stream) {
     if (err) return done(err);
 
     stream.pipe(new PNG()).once('error', done).on('parsed', function() {
-      var top = config.top || 0;
-      var left = config.left || 0;
-      var width = Math.min(config.width, this.width - left);
-      var height = Math.min(config.height, this.height - top);
+      var top = config.top > 0 ? Math.min(config.top, this.height - 1) : 0;
+      var left = config.left > 0 ? Math.min(config.left, this.width - 1) : 0;
+      var width = config.width > 0 ? Math.min(config.width, this.width - left) : this.width - left;
+      var height = config.height > 0 ? Math.min(config.height, this.height - top) : this.height - top;
 
       var writeStream = new PNG({width: width, height: height});
 
