@@ -1,6 +1,6 @@
 {
   "name": "png-crop",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small PNG cropping utility, written in pure JS for Node.",
   "main": "index.js",
   "dependencies": {
